@@ -6,22 +6,66 @@
 
 <script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
 <style>
-    #dellink{
-        color:red;
+
+    h1{
+        text-align:center;
     }
+    #heading{
+        position:relative;
+    }
+    #link_btn {
+        position: absolute;
+        top:0;
+        right:0;
+    }
+    #del_link {
+        color: red;
+        border: 1px solid red;
+        padding: 5px 10px;
+        border-radius: 25px;
+        font-size: 11px;
+        text-decoration: none;
+        transition: background-color 0.25s, color 0.25s;
+        margin-left:10px;
+    }
+    #del_link:hover {
+        background-color: red;
+        color: white;
+    }
+    #edit_link {
+        color: #0074d9;
+        border: 1px solid #0074d9;
+        padding: 5px 10px;
+        border-radius: 25px;
+        font-size: 11px;
+        text-decoration: none;
+        transition: background-color 0.25s, color 0.25s;
+    }
+    #edit_link:hover {
+        background-color: #0074d9;
+        color: white;
+    }
+    #flight_number {
+        font-weight: bold;
+        color: cadetblue;
+    }
+
 </style>
 
 
+<a href="/Flight/List"><i class="fa-solid fa-arrow-left"></i> Back to flight schedule</a>
 
-<h2>Show Flight @Model.FlightNumber</h2>
+<div id="heading">
+    <h1>Show Flight - <span id="flight_number">@Model.FlightNumber</span></h1>
+    <div id="link_btn">
+        <a href="/Flight/Edit/@Model.FlightId" id="edit_link"><i class="fa-solid fa-pencil"></i> Edit</a>
+        <a href="/Flight/DeleteConfirm/@Model.FlightId" id="del_link"><i class="fa-solid fa-trash-can"></i> Delete</a>
+    </div>
+
+</div>
+
+
 <div id="containershow">
-    <nav>
-        <a href="/Flight/List"><i class="fa-solid fa-arrow-left"></i> Back to flight schedule</a>
-        <br />
-        <a href="/Flight/Edit/@Model.FlightId"><i class="fa-solid fa-pencil"></i> Edit</a>
-        <br />
-        <a href="/Flight/DeleteConfirm/@Model.FlightId" id="dellink"><i class="fa-solid fa-trash-can"></i> Delete</a>
-    </nav>
     <div>Departure Time: @Model.DepartureTime</div>
     <div>Flight Status: @Model.FlightStatus </div>
     <div>Airline: @Model.Airline</div>
