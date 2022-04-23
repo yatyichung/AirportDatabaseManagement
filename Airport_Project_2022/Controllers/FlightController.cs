@@ -77,5 +77,78 @@ namespace Airport_Project_2022.Controllers
             return RedirectToAction("List");
         }
 
+        //GET: /Flight/DeleteConfirm/{id}
+        //[Route("/Flight/DeleteConfirm/{FlightId}")]
+        public ActionResult DeleteConfirm(int id)
+        {
+            FlightsDataController controller = new FlightsDataController();
+            Flight SelectedFlight = controller.FindFlight(id);
+
+            //route tyhe single flight info to view Flights/Show.cshtml
+
+            return View(SelectedFlight);
+        }
+
+        //POST: /Flight/Delete/{id}
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            FlightsDataController controller = new FlightsDataController();
+
+            controller.DeleteFlight(id);
+
+            return RedirectToAction("List");
+        }
+
+
+        //GET: /Flight/Edit/{id}
+        public ActionResult Edit(int id)
+        {
+            //pass flight info to the view to show that to the user
+
+            FlightsDataController controller = new FlightsDataController();
+
+            Flight SelectedFlight = controller.FindFlight(id);
+
+            return View(SelectedFlight);
+        }
+
+        //POST: /Flight/Update/{id}
+       /// <summary>
+       ///  This method actually updates the flight
+       /// </summary>
+       /// <param name="id"></param>
+       /// <param name="departuretime"></param>
+       /// <param name="flightstatus"></param>
+       /// <param name="airline"></param>
+       /// <param name="flightnumber"></param>
+       /// <param name="destination"></param>
+       /// <param name="terminal"></param>
+       /// <param name="gate"></param>
+       /// <returns></returns>
+        [HttpPost]
+        public ActionResult Update(int id, TimeSpan departuretime, string flightstatus, string airline, string flightnumber, string destination, int terminal, int gate)
+        {
+            Flight FlightInfo = new Flight();
+
+            FlightInfo.DepartureTime = departuretime;
+            FlightInfo.FlightStatus = flightstatus;
+            FlightInfo.Airline = airline;
+            FlightInfo.FlightNumber = flightnumber;
+            FlightInfo.Destination = destination;
+            FlightInfo.Terminals = terminal;
+            FlightInfo.Gate = gate;
+            
+
+            //update the flight information
+            FlightsDataController controller = new FlightsDataController();
+            controller.UpdateFlight(id, FlightInfo);
+
+            //return to the Flight that I just changed
+            return RedirectToAction("Show/"+id);
+        }
+
+
+
     }
 }

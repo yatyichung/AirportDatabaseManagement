@@ -45,11 +45,11 @@ namespace Airport_Project_2022.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL QUERY
-            string query = "Select * from flights";
+            string query = "SELECT * FROM flights";
 
             if (SearchKey != null)
             {
-                query = query + " where lower(flight_number) =lower(@key)";
+                query = query + " WHERE lower(flight_number) =lower(@key)";
                 cmd.Parameters.AddWithValue("@key", SearchKey);
                 cmd.Prepare();
             }
@@ -155,8 +155,8 @@ namespace Airport_Project_2022.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
 
-            string query = "insert into flights (departure_time,flight_status,airline,flight_number,destination,terminals,gate) " +
-                "values (@departure_time,@flight_status,@airline,@flight_number,@destination,@terminals,@gate)";
+            string query = "INSERT INTO flights (departure_time,flight_status,airline,flight_number,destination,terminals,gate) " +
+                "VALUES (@departure_time,@flight_status,@airline,@flight_number,@destination,@terminals,@gate)";
             cmd.CommandText = query;
 
             cmd.Parameters.AddWithValue("@departure_time",NewFlight.DepartureTime);
@@ -173,6 +173,73 @@ namespace Airport_Project_2022.Controllers
             Conn.Close();
 
         }
+
+        /// <summary>
+        /// Delete a flight in the system
+        /// </summary>
+        /// <param name="FlightId">the primary key flightid</param>
+        public void DeleteFlight(int FlightId)
+        {
+            //Create an instance of a connection
+            MySqlConnection Conn = Airport.AccessDatabase();
+
+            //Open the connection between the web server and database
+            Conn.Open();
+
+            //Establish a new command (query) for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            string query = "DELETE FROM flights WHERE flightid=@id";
+
+            cmd.Parameters.AddWithValue("@id", FlightId);
+            cmd.CommandText= query;
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+
+        }
+
+
+
+        /// <summary>
+        /// Update a flight in the system given author information
+        /// </summary>
+        /// <param name="FlightId">primary key of the author to update</param>
+        /// <param name="FlightInfo">author object containing all the info</param>
+        public void UpdateFlight(int FlightId, Flight FlightInfo)
+        {
+
+            //Create an instance of a connection
+            MySqlConnection Conn = Airport.AccessDatabase();
+
+            //Open the connection between the web server and database
+            Conn.Open();
+
+            //Establish a new command (query) for our database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL query
+            cmd.CommandText = "UPDATE flights SET departure_time=@departure_time,flight_status=@flight_status,airline=@airline,flight_number=@flight_number,destination=@destination,terminals=@terminals,gate=@gate WHERE flightid=@flightid";
+
+            cmd.Parameters.AddWithValue("@departure_time", FlightInfo.DepartureTime);
+            cmd.Parameters.AddWithValue("@flight_status", FlightInfo.FlightStatus);
+            cmd.Parameters.AddWithValue("@airline", FlightInfo.Airline);
+            cmd.Parameters.AddWithValue("@flight_number", FlightInfo.FlightNumber);
+            cmd.Parameters.AddWithValue("@destination", FlightInfo.Destination);
+            cmd.Parameters.AddWithValue("@terminals", FlightInfo.Terminals);
+            cmd.Parameters.AddWithValue("@gate", FlightInfo.Gate);
+            cmd.Parameters.AddWithValue("@flightid", FlightId);
+
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+
+        }
+
+
 
 
     }

@@ -1,0 +1,52 @@
+﻿@model Airport_Project_2022.Models.Flight
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<a href="/Flight/List">Back to flight schedule</a>
+<h2>Edit Flight Info</h2>
+
+
+
+<form action="/Flight/Update/@Model.FlightId" method="POST">
+    <div>
+        <label>Departure Time:</label>
+        <input type="text" name="departuretime" value="@Model.DepartureTime"/>
+    </div>
+
+    <div>
+        <label>Flight Status:</label>
+        <input type="text" name="flightstatus" value="@Model.FlightStatus" />
+    </div>
+
+    <div>
+        <label>Airline:</label>
+        <input type="text" name="airline" value="@Model.Airline"/>
+    </div>
+
+    <div>
+        <label>Flight Number:</label>
+        <input type="text" name="flightnumber" value="@Model.FlightNumber"/>
+    </div>
+
+    <div>
+        <label>Destination:</label>
+        <input type="text" name="destination" value="@Model.Destination"/>
+    </div>
+
+    <div>
+        <label>Terminal:</label>
+        <input type="text" name="terminal" value="@Model.Terminals"/>
+    </div>
+
+    <div>
+        <label>Gate:</label>
+        <input type="text" name="gate" value="@Model.Gate"/>
+    </div>
+
+    <div>
+        <input type="submit" value="Update Flight" />
+    </div>
+
+</form>

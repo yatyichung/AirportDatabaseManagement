@@ -260,6 +260,8 @@
     <Content Include="Views\Flight\List.cshtml" />
     <Content Include="Views\Flight\Show.cshtml" />
     <Content Include="Views\Flight\New.cshtml" />
+    <Content Include="Views\Flight\DeleteConfirm.cshtml" />
+    <Content Include="Views\Flight\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

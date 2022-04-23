@@ -1,17 +1,32 @@
-﻿
-
-@model Airport_Project_2022.Models.Flight
+﻿ @model Airport_Project_2022.Models.Flight
 
 @{
     ViewBag.Title = "Show";
 }
 
-<h2>Show Flight</h2>
+<script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
+<style>
+    #dellink{
+        color:red;
+    }
+</style>
 
-<div>Departure Time: @Model.DepartureTime</div>
-<div>Flight Status: @Model.FlightStatus </div>
-<div>Airline: @Model.Airline</div>
-<div>Flight Number: @Model.FlightNumber</div>
-<div>Destination: @Model.Destination</div>
-<div>Terminal: @Model.Terminals</div>
-<div>Gate:  @Model.Gate</div>
+
+
+<h2>Show Flight @Model.FlightNumber</h2>
+<div id="containershow">
+    <nav>
+        <a href="/Flight/List"><i class="fa-solid fa-arrow-left"></i> Back to flight schedule</a>
+        <br />
+        <a href="/Flight/Edit/@Model.FlightId"><i class="fa-solid fa-pencil"></i> Edit</a>
+        <br />
+        <a href="/Flight/DeleteConfirm/@Model.FlightId" id="dellink"><i class="fa-solid fa-trash-can"></i> Delete</a>
+    </nav>
+    <div>Departure Time: @Model.DepartureTime</div>
+    <div>Flight Status: @Model.FlightStatus </div>
+    <div>Airline: @Model.Airline</div>
+    <div>Flight Number: @Model.FlightNumber</div>
+    <div>Destination: @Model.Destination</div>
+    <div>Terminal: @Model.Terminals</div>
+    <div>Gate:  @Model.Gate</div>
+</div>

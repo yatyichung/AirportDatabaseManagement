@@ -5,11 +5,13 @@
     ViewBag.Title = "List";
 }
 
+<script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
+
 <h2>Flight Scehdule</h2>
 
 <div>There are @Model.Count() flights in the system.</div>
 
-<div><a href="/Flight/New">Add a new flight</a></div>
+<div><a href="/Flight/New"><i class="fa-solid fa-plus"></i> Add a new flight</a></div>
 
 <div>
     <form action="/Flight/List" method="GET">
