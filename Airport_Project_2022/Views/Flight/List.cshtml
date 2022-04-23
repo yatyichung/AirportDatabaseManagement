@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Airport_Project_2022.Models.Flight>
+
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Flight Scehdule</h2>
+
+<div>There are @Model.Count() flights in the system.</div>
+
+<div>
+    <form action="/Flight/List" method="GET">
+        <input type="text" name="SearchKey" placeholder="type flight number here" />
+        <input type="submit" value="Search" />
+    </form>
+
+</div>
+
+<div>
+    @{
+        foreach (Airport_Project_2022.Models.Flight Flight in Model)
+        {
+            <div>
+                <a href="/Flight/Show/@Flight.FlightId">@Flight.DepartureTime , @Flight.FlightStatus , @Flight.Airline , @Flight.FlightNumber , @Flight.Destination , @Flight.Terminals , @Flight.Gate</a>
+            </div>
+
+        }
+
+    }
+
+</div>
