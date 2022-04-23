@@ -5,8 +5,8 @@
 
 <h2>New Flight</h2>
 
-<form action="/Flight/Create" method="post">
-    <div>    
+<form action="/Flight/Create" method="POST">
+    <div>
         <label>Departure Time:</label>
         <input type="text" name="departuretime" />
     </div>
@@ -27,6 +27,11 @@
     </div>
 
     <div>
+        <label>Destination:</label>
+        <input type="text" name="destination" />
+    </div>
+
+    <div>
         <label>Terminal:</label>
         <input type="text" name="terminal" />
     </div>
@@ -37,7 +42,7 @@
     </div>
 
     <div>
-        <input type="submit"  value="Add Flight" />
+        <input type="submit" value="Add Flight" />
     </div>
 
 </form>

@@ -155,7 +155,22 @@ namespace Airport_Project_2022.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
 
-            string query = "insert into flights ()";
+            string query = "insert into flights (departure_time,flight_status,airline,flight_number,destination,terminals,gate) " +
+                "values (@departure_time,@flight_status,@airline,@flight_number,@destination,@terminals,@gate)";
+            cmd.CommandText = query;
+
+            cmd.Parameters.AddWithValue("@departure_time",NewFlight.DepartureTime);
+            cmd.Parameters.AddWithValue("@flight_status", NewFlight.FlightStatus);
+            cmd.Parameters.AddWithValue("@airline", NewFlight.Airline);
+            cmd.Parameters.AddWithValue("@flight_number", NewFlight.FlightNumber);
+            cmd.Parameters.AddWithValue("@destination", NewFlight.Destination);
+            cmd.Parameters.AddWithValue("@terminals", NewFlight.Terminals);
+            cmd.Parameters.AddWithValue("@gate", NewFlight.Gate);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
 
         }
 

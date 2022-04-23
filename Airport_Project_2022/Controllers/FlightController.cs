@@ -54,13 +54,25 @@ namespace Airport_Project_2022.Controllers
         //POST: /Flight/Create
         [HttpPost]
 
-        public ActionResult Create(string departuretime,string flightstatus, string airline,string flightnumber, string terminal,string gate)
+        public ActionResult Create(TimeSpan departuretime,string flightstatus, string airline,string flightnumber, string destination, int terminal,int gate)
         {
-            Debug.WriteLine("the flight info is: "+departuretime+" "+flightstatus+" "+airline+" "+flightnumber+" "+terminal+" "+ gate);
+            Debug.WriteLine("the flight info is: "+departuretime+" "+flightstatus+" "+airline+" "+flightnumber+" "+destination+" " +terminal+" "+ gate);
           
+            Flight NewFlight = new Flight();
+            NewFlight.DepartureTime = departuretime;
+            NewFlight.FlightStatus = flightstatus;
+            NewFlight.Airline = airline;
+            NewFlight.FlightNumber = flightnumber;
+            NewFlight.Destination = destination;
+            NewFlight.Terminals = terminal;
+            NewFlight.Gate = gate;
+
+            FlightsDataController controller = new FlightsDataController();
+            controller.AddFlight(NewFlight);
+
             //connect to a database
             //insert into flights with provided values
-            
+
             //redirect immediately to the list view
             return RedirectToAction("List");
         }
