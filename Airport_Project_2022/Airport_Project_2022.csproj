@@ -259,6 +259,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Flight\List.cshtml" />
     <Content Include="Views\Flight\Show.cshtml" />
+    <Content Include="Views\Flight\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

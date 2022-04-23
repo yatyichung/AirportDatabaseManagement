@@ -139,8 +139,25 @@ namespace Airport_Project_2022.Controllers
             return SelectedFlight;
         }
 
+        /// <summary>
+        /// Add a new flight into the system given flight information
+        /// <paramref name="NewFlight">The flight information being add</paramref>
+        /// </summary>
+        public void AddFlight(Flight NewFlight)
+        {
+            //Create an instance of a connection
+            MySqlConnection Conn = Airport.AccessDatabase();
+
+            //Open the connection between the web server and database
+            Conn.Open();
+
+            //Establish a new command (query) for our database
+            MySqlCommand cmd = Conn.CreateCommand();
 
 
+            string query = "insert into flights ()";
+
+        }
 
 
     }

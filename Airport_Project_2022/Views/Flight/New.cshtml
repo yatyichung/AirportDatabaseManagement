@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New Flight</h2>
+
+<form action="/Flight/Create" method="post">
+    <div>    
+        <label>Departure Time:</label>
+        <input type="text" name="departuretime" />
+    </div>
+
+    <div>
+        <label>Flight Status:</label>
+        <input type="text" name="flightstatus" />
+    </div>
+
+    <div>
+        <label>Airline:</label>
+        <input type="text" name="airline" />
+    </div>
+
+    <div>
+        <label>Flight Number:</label>
+        <input type="text" name="flightnumber" />
+    </div>
+
+    <div>
+        <label>Terminal:</label>
+        <input type="text" name="terminal" />
+    </div>
+
+    <div>
+        <label>Gate:</label>
+        <input type="text" name="gate" />
+    </div>
+
+    <div>
+        <input type="submit"  value="Add Flight" />
+    </div>
+
+</form>

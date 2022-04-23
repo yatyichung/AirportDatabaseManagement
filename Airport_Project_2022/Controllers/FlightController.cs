@@ -44,5 +44,26 @@ namespace Airport_Project_2022.Controllers
 
             return View(SelectedFlight);
         }
+
+        //GET: /Flight/New
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //POST: /Flight/Create
+        [HttpPost]
+
+        public ActionResult Create(string departuretime,string flightstatus, string airline,string flightnumber, string terminal,string gate)
+        {
+            Debug.WriteLine("the flight info is: "+departuretime+" "+flightstatus+" "+airline+" "+flightnumber+" "+terminal+" "+ gate);
+          
+            //connect to a database
+            //insert into flights with provided values
+            
+            //redirect immediately to the list view
+            return RedirectToAction("List");
+        }
+
     }
 }
