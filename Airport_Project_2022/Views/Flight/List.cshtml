@@ -5,7 +5,57 @@
     ViewBag.Title = "List";
 }
 
+
+<div id="heading">
+    <h1>Flight Scehdule</h1>
+    <a href="/Flight/New" id="add_flight"><i class="fa-solid fa-plus"></i> Add New flight</a>
+    <div id="search_bar">
+        <form action="/Flight/List" method="GET">
+            <input type="text" name="SearchKey" placeholder="search by flight number..." />
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+
+</div>
+
+<div id="flight_total">~Total <span id="flight_count">@Model.Count()</span> flights in the system~</div>
+
+<table id="flights">
+    <tr>
+        <th>Departure Time</th>
+        <th>Status</th>
+        <th>Airline</th>
+        <th>Flight</th>
+        <th>Destination</th>
+        <th>Terminal</th>
+        <th>Gate</th>
+    </tr>
+
+
+    <tr>
+        @{
+            foreach (Airport_Project_2022.Models.Flight Flight in Model)
+            {
+            <tr>
+                <td> @Flight.DepartureTime </td>
+                <td id="flight_status"> @Flight.FlightStatus</td>
+                <td>@Flight.Airline</td>
+                <td>@Flight.FlightNumber</td>
+                <td>@Flight.Destination </td>
+                <td>@Flight.Terminals </td>
+                <td>@Flight.Gate</td>
+                <td><a href="/Flight/Show/@Flight.FlightId"><i class="fa-solid fa-hand-pointer"></i> SELECT</a></td>
+            </tr>
+        }
+        }
+
+
+
+    </table>
+
+
 <script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
+
 <style>
     h1, #flight_total {
         text-align: center;
@@ -31,11 +81,11 @@
         text-decoration: none;
         transition: background-color 0.25s, color 0.25s;
     }
+    #add_flight:hover {
+        background-color: #28a745;
+        color: white;
+    }
 
-        #add_flight:hover {
-            background-color: #28a745;
-            color: white;
-        }
 
     #search_bar {
         position: absolute;
@@ -46,10 +96,10 @@
         border-radius: 15px;
     }
 
-        #search_bar input, button {
-            border: none;
-            background-color: transparent;
-        }
+    #search_bar input, button {
+        border: none;
+        background-color: transparent;
+    }
 
     input:focus, textarea:focus, select:focus {
         outline: none;
@@ -83,55 +133,4 @@
         background-color: #ddd;
     }
 </style>
-
-
-
-
-<div id="heading">
-    <h1>Flight Scehdule</h1>
-    <a href="/Flight/New" id="add_flight"><i class="fa-solid fa-plus"></i> Add New flight</a>
-    <div id="search_bar">
-        <form action="/Flight/List" method="GET">
-            <input type="text" name="SearchKey" placeholder="search by flight number..." />
-            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
-    </div>
-
-</div>
-
-<div id="flight_total">~Total <span id="flight_count">@Model.Count()</span> flights in the system~</div>
-
-<table id="flights">
-    <tr>
-        <th>Departure Time</th>
-        <th>Status</th>
-        <th>Airline</th>
-        <th>Flight</th>
-        <th>Destination</th>
-        <th>Terminal</th>
-        <th>Gate</th>
-    </tr>
-
-
-    <tr>
-        @{
-            foreach (Airport_Project_2022.Models.Flight Flight in Model)
-            {
-    <tr>
-        <td> @Flight.DepartureTime </td>
-        <td> @Flight.FlightStatus</td>
-        <td>@Flight.Airline</td>
-        <td>@Flight.FlightNumber</td>
-        <td>@Flight.Destination </td>
-        <td>@Flight.Terminals </td>
-        <td>@Flight.Gate</td>
-        <td><a href="/Flight/Show/@Flight.FlightId"><i class="fa-solid fa-hand-pointer"></i> SELECT</a></td>
-    </tr>
-                }
-                }
-          
-
-
-        </table>
-
 

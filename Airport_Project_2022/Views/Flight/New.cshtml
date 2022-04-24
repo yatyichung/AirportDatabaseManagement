@@ -3,49 +3,108 @@
     ViewBag.Title = "New";
 }
 
+
+
+<div id="heading">
+    <a href="/Flight/List" id="back"><i class="fa-solid fa-arrow-left"></i> Back</a>
+    <h1>Adding A New Flight</h1>
+</div>
+
+
+<div id="new_container">
+    <form action="/Flight/Create" method="POST" id="new_form">
+        <div>
+            <label>Departure Time:</label><br />
+            <input type="text" name="departuretime"  size="50"/>
+        </div>
+
+        <div>
+            <label>Flight Status:</label><br />
+            <input type="text" name="flightstatus"  size="50"/>
+        </div>
+
+        <div>
+            <label>Airline:</label><br />
+            <input type="text" name="airline"  size="50"/>
+        </div>
+
+        <div>
+            <label>Flight Number:</label><br />
+            <input type="text" name="flightnumber"  size="50"/>
+        </div>
+
+        <div>
+            <label>Destination:</label><br />
+            <input type="text" name="destination"  size="50"/>
+        </div>
+
+        <div>
+            <label>Terminal:</label><br />
+            <input type="text" name="terminal"  size="50"/>
+        </div>
+
+        <div>
+            <label>Gate:</label><br />
+            <input type="text" name="gate"  size="50"/>
+        </div>
+
+        <div>
+            <input type="submit" value="Add Flight" id="submit_btn" />
+        </div>
+
+    </form>
+</div>
+
 <script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
+<style>
+    h1 {
+        text-align: center;
+    }
 
-<a href="/Flight/List"><i class="fa-solid fa-arrow-left"></i> Back to flight schedule</a>
-<h2>New Flight</h2>
+    #heading {
+        position: relative;
+    }
 
-<form action="/Flight/Create" method="POST">
-    <div>
-        <label>Departure Time:</label>
-        <input type="text" name="departuretime" />
-    </div>
+    #back {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #new_container {
+        background-image: url("https://media.idownloadblog.com/wp-content/uploads/2021/04/gradient-iPhone-wallpaper-marcusbremen-idownloadblog-turquoise.png");
+        background-size: cover;
+        height: 700px;
+        padding: 70px;
+    }
 
-    <div>
-        <label>Flight Status:</label>
-        <input type="text" name="flightstatus" />
-    </div>
+    #new_form {
+        background-color: rgb(255, 255, 255,0.5);
+        width: 400px;
+        padding: 20px 50px;
+        margin: 0 auto;
+        border-radius: 0 20px;
+    }
 
-    <div>
-        <label>Airline:</label>
-        <input type="text" name="airline" />
-    </div>
+    label {
+        color: #28a745;
+    }
 
-    <div>
-        <label>Flight Number:</label>
-        <input type="text" name="flightnumber" />
-    </div>
+    input {
+        border: none;
+        border-radius: 5px;
+    }
 
-    <div>
-        <label>Destination:</label>
-        <input type="text" name="destination" />
-    </div>
+    #submit_btn {
+        margin-top: 30px;
+        width: 100%;
+        padding: 10px 0;
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+        transition: background-color 0.25s;
+    }
 
-    <div>
-        <label>Terminal:</label>
-        <input type="text" name="terminal" />
-    </div>
-
-    <div>
-        <label>Gate:</label>
-        <input type="text" name="gate" />
-    </div>
-
-    <div>
-        <input type="submit" value="Add Flight" />
-    </div>
-
-</form>
+        #submit_btn:hover {
+            background-color: #1c7d32;
+        }
+</style>

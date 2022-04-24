@@ -4,49 +4,104 @@
     ViewBag.Title = "Edit";
 }
 
-<a href="/Flight/List">Back to flight schedule</a>
-<h2>Edit Flight Info</h2>
+<div id="heading">
+    <h1>Edit Flight Info</h1>
+    <a href="/Flight/Show/@Model.FlightId" id="back"><i class="fa-solid fa-arrow-left"></i>  Back</a>
+</div>
+
+<div id="edit_container">
+    <form action="/Flight/Update/@Model.FlightId" method="POST" id="edit_form">
+        <div>
+            <label>Departure Time:</label><br />
+            <input type="text" name="departuretime" value="@Model.DepartureTime" size="50" />
+        </div>
+
+        <div>
+            <label>Flight Status:</label><br />
+            <input type="text" name="flightstatus" value="@Model.FlightStatus" size="50"/>
+        </div>
+
+        <div>
+            <label>Airline:</label><br />
+            <input type="text" name="airline" value="@Model.Airline" size="50"/>
+        </div>
+
+        <div>
+            <label>Flight Number:</label><br />
+            <input type="text" name="flightnumber" value="@Model.FlightNumber" size="50"/>
+        </div>
+
+        <div>
+            <label>Destination:</label><br />
+            <input type="text" name="destination" value="@Model.Destination" size="50"/>
+        </div>
+
+        <div>
+            <label>Terminal:</label><br />
+            <input type="text" name="terminal" value="@Model.Terminals" size="50" />
+        </div>
+
+        <div>
+            <label>Gate:</label><br />
+            <input type="text" name="gate" value="@Model.Gate" size="50"/>
+        </div>
+
+        <div>
+            <input type="submit" value="UPDATE" id="submit_btn" />
+        </div>
+
+    </form>
+</div>
 
 
 
-<form action="/Flight/Update/@Model.FlightId" method="POST">
-    <div>
-        <label>Departure Time:</label>
-        <input type="text" name="departuretime" value="@Model.DepartureTime"/>
-    </div>
+    <script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
+    <style>
+        h1 {
+            text-align: center;
+        }
 
-    <div>
-        <label>Flight Status:</label>
-        <input type="text" name="flightstatus" value="@Model.FlightStatus" />
-    </div>
+        #heading {
+            position: relative;
+        }
 
-    <div>
-        <label>Airline:</label>
-        <input type="text" name="airline" value="@Model.Airline"/>
-    </div>
+        #back {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-    <div>
-        <label>Flight Number:</label>
-        <input type="text" name="flightnumber" value="@Model.FlightNumber"/>
-    </div>
+        #edit_container {
+            background-image: url("https://cache.desktopnexus.com/thumbseg/1108/1108912-bigthumbnail.jpg");
+            background-size: cover;
+            height: 700px;
+            padding:70px;
+        }
+        #edit_form {
+            background-color: rgb(255, 255, 255,0.5);
+            width: 400px;
+            padding: 20px 50px;
+            margin: 0 auto;
+            border-radius: 0 20px;
+        }
+        label {
+            color:cadetblue;
+        }
+        input {
+            border:none;
+            border-radius:5px;
+        }
+        #submit_btn {
+            margin-top: 30px;
+            width: 100%;
+            padding: 10px 0;
+            background-color: cadetblue;
+            color: white;
+            font-weight:bold;
+            transition: background-color 0.25s;
+        }
+        #submit_btn:hover {
+                background-color: rgb(54, 90, 91);
+        }
 
-    <div>
-        <label>Destination:</label>
-        <input type="text" name="destination" value="@Model.Destination"/>
-    </div>
-
-    <div>
-        <label>Terminal:</label>
-        <input type="text" name="terminal" value="@Model.Terminals"/>
-    </div>
-
-    <div>
-        <label>Gate:</label>
-        <input type="text" name="gate" value="@Model.Gate"/>
-    </div>
-
-    <div>
-        <input type="submit" value="Update Flight" />
-    </div>
-
-</form>
+    </style>
