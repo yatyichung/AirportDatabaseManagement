@@ -13,37 +13,55 @@
     <form action="/Flight/Update/@Model.FlightId" method="POST" id="edit_form">
         <div>
             <label>Departure Time:</label><br />
-            <input type="text" name="departuretime" value="@Model.DepartureTime" size="50" />
+            <input type="text" name="departuretime" value="@Model.DepartureTime" size="50" placeholder="ex. 13:00:00"/>
+            <p class="alert_box" id="alert_departuretime" style="display: none;">Alert! Follow format "13:00:00".</p>
         </div>
 
         <div>
             <label>Flight Status:</label><br />
-            <input type="text" name="flightstatus" value="@Model.FlightStatus" size="50"/>
+            <select name="flightstatus" id="flightstatus">
+                <option value="@Model.FlightStatus"> Current - @Model.FlightStatus </option>
+                <option value="On Time">OnTime</option>
+                <option value="Departed">Departed</option>
+                <option value="Delayed">Delayed</option>
+                <option value="Boarding">Boarding</option>
+                <option value="Cancelled">Cancalled</option>
+            </select>
+            <p class="alert_box" id="alert_status" style="display: none;">Alert! Please choose a status.</p>
         </div>
 
         <div>
             <label>Airline:</label><br />
-            <input type="text" name="airline" value="@Model.Airline" size="50"/>
+            <input type="text" name="airline" value="@Model.Airline" size="50" placeholder="ex. Air Canada" />
+            <p class="alert_box" id="alert_airline" style="display:none;">Alert! Invalid Input.</p>
         </div>
 
         <div>
             <label>Flight Number:</label><br />
-            <input type="text" name="flightnumber" value="@Model.FlightNumber" size="50"/>
+            <input type="text" name="flightnumber" value="@Model.FlightNumber" size="50" placeholder="ex. AC3115"  />
+            <p class="alert_box" id="alert_flightnumber" style="display: none;">Alert! Follow format "AA1234".</p>
         </div>
 
         <div>
             <label>Destination:</label><br />
-            <input type="text" name="destination" value="@Model.Destination" size="50"/>
+            <input type="text" name="destination" value="@Model.Destination" size="50"  placeholder="ex. Vancouver"/>
+            <p class="alert_box" id="alert_destination" style="display: none;">Alert! Invalid input.</p>
         </div>
 
         <div>
             <label>Terminal:</label><br />
-            <input type="text" name="terminal" value="@Model.Terminals" size="50" />
+            <select name="terminal" id="terminal">
+                <option value="@Model.Terminals">Current - @Model.Terminals</option>
+                <option value="1">1</option>
+                <option value="3">3</option>
+            </select>
+            <p class="alert_box" id="alert_terminal" style="display: none;">Alert! Invalid Input.</p>
         </div>
 
         <div>
             <label>Gate:</label><br />
-            <input type="text" name="gate" value="@Model.Gate" size="50"/>
+            <input type="text" name="gate" value="@Model.Gate" size="50" placeholder="1 to 80" />
+            <p class="alert_box" id="alert_gate" style="display: none;">Alert! Enter between 1 to 80.</p>
         </div>
 
         <div>
@@ -56,6 +74,77 @@
 
 
     <script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
+    <script>
+        window.onload = function () {
+            var formHandle = document.forms.edit_form;
+            var alertBoxTime = document.getElementById("alert_departuretime");
+            var alertBoxStatus = document.getElementById("alert_status");
+            var alertBoxAirline = document.getElementById("alert_airline");
+            var alertBoxNum = document.getElementById("alert_flightnumber");
+            var alertBoxDestination = document.getElementById("alert_destination");
+            var alertBoxTerminal = document.getElementById("alert_terminal");
+            var alertBoxGate = document.getElementById("alert_gate");
+
+            formHandle.onsubmit = processForm;
+
+            function processForm() {
+
+                var departureTimeRe = /^[0-9]{2}[:][0-9]{2}[:][0-9]{2}$/;
+                if (formHandle.departuretime.value.match(departureTimeRe)) {
+                    alertBoxTime.style.display = "none";
+                } else {
+                    formHandle.departuretime.focus();
+                    alertBoxTime.style.display = "block";
+                    return false;
+                }
+
+
+
+               
+
+                if (formHandle.airline.value == "" || formHandle.airline.value == null) {
+                    alertBoxAirline.style.display = "block";
+                    formHandle.airline.focus();
+                    return false;
+                } else {
+                    alertBoxAirline.style.display = "none";
+                }
+
+                var flightNumRe = /^[A-Z]{2}[0-9]{4}$/;
+
+                if (formHandle.flightnumber.value.match(flightNumRe)) {
+                    alertBoxNum.style.display = "none";
+                } else {
+                    formHandle.flightnumber.focus();
+                    alertBoxNum.style.display = "block";
+                    return false;
+                }
+
+
+                if (formHandle.destination.value === "" || formHandle.destination.value === null) {
+                    alertBoxDestination.style.display = "block";
+                    formHandle.destination.focus();
+                    return false;
+                } else {
+                    alertBoxDestination.style.display = "none";
+                }
+
+
+            
+
+
+                if (formHandle.gate.value === "" || formHandle.gate.value === null || formHandle.gate.value <= 0 || formHandle.gate.value >= 81 || isNaN(formHandle.gate.value)) {
+                    alertBoxGate.style.display = "block";
+                    formHandle.gate.focus();
+                    return false;
+                } else {
+                    alertBoxGate.style.display = "none";
+                }
+
+            }
+
+        };
+    </script>
     <style>
         h1 {
             text-align: center;
@@ -72,10 +161,10 @@
         }
 
         #edit_container {
-            background-image: url("https://cache.desktopnexus.com/thumbseg/1108/1108912-bigthumbnail.jpg");
+            background-image: url("https://i.pinimg.com/originals/12/68/5c/12685c457f9cba27fbbd2dd126c36fe6.jpg");
             background-size: cover;
             height: 700px;
-            padding:70px;
+            padding: 70px;
         }
         #edit_form {
             background-color: rgb(255, 255, 255,0.5);
@@ -85,7 +174,7 @@
             border-radius: 0 20px;
         }
         label {
-            color:cadetblue;
+            color: rgb(54, 90, 91);
         }
         input {
             border:none;
@@ -103,5 +192,9 @@
         #submit_btn:hover {
                 background-color: rgb(54, 90, 91);
         }
-
+        .alert_box {
+            color: darkred;
+            padding: 0;
+            margin: 0;
+        }
     </style>

@@ -17,19 +17,33 @@
 
 </div>
 
-
-<div id="containershow">
-    <div>Departure Time: @Model.DepartureTime</div>
-    <div>Flight Status: @Model.FlightStatus </div>
-    <div>Airline: @Model.Airline</div>
-    <div>Flight Number: @Model.FlightNumber</div>
-    <div>Destination: @Model.Destination</div>
-    <div>Terminal: @Model.Terminals</div>
-    <div>Gate:  @Model.Gate</div>
+<div class="container">
+    <div class="row">
+        <div class="styling col col-sm-6 col-md-4 bg-primary"><span class="col-title"><i class="fa-solid fa-plane-departure"></i>  Departure Time</span> <span class="col-info">@Model.DepartureTime</span></div>
+        <div class="styling col col-sm-6 col-md-4 bg-info"><span class="col-title"><i class="fa-solid fa-spinner"></i>  Flight Status</span><span class="col-info" id="flight_status">@Model.FlightStatus</span></div>
+        <div class="styling col col-sm-6 col-md-4 bg-primary"><span class="col-title"><i class="fa-solid fa-plane"></i>  Airline</span> <span class="col-info">@Model.Airline</span></div>
+        <div class="styling col col-sm-6 col-md-4 bg-info"><span class="col-title"><i class="fa-solid fa-ticket"></i>  Flight Number</span><span class="col-info"> @Model.FlightNumber</span></div>
+        <div class="styling col col-sm-6 col-md-4 bg-primary"><span class="col-title"><i class="fa-solid fa-location-dot"></i>  Destination</span> <span class="col-info"> @Model.Destination</span></div>
+        <div class="styling col col-sm-6 col-md-4 bg-info"><span class="col-title"><i class="fa-solid fa-tower-observation"></i>  Terminals</span> <span class="col-info">  @Model.Terminals</span></div>
+        <div class="styling col col-sm-6 col-md-4 bg-primary"><span class="col-title"><i class="fa-solid fa-torii-gate"></i>  Gate</span> <span class="col-info">  @Model.Gate</span></div>
+    </div>
 </div>
 
 
 <script src="https://kit.fontawesome.com/e67acba296.js" crossorigin="anonymous"></script>
+<script>
+    window.onload = function () {
+        var fs = document.getElementById("flight_status");
+        if ( fs.innerHTML == 'On Time' ||fs.innerHTML == 'Boarding') {
+            fs.style.color = 'green';
+        } else if (fs.innerHTML == 'Delayed' || fs.innerHTML == 'Cancelled' ) {
+            fs.style.color = 'red';
+        } else {
+            fs.style.color = 'yellow';
+        }
+
+    };
+</script>
 <style>
 
     h1 {
@@ -84,5 +98,19 @@
     #flight_number {
         font-weight: bold;
         color: cadetblue;
+    }
+    .container .row{
+        text-align:center;
+    }
+    .styling {
+        padding: 50px 0;
+    }
+    .col-title{
+        font-size:15px;
+    }
+    .col-info {
+        display: block;
+        font-size: 30px;
+        font-weight:bold;
     }
 </style>
